@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app
+        PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app>
+
+    <!-- 过滤器的执行顺序与配置顺序一致，一般把过滤器配置在所有的 Servlet 之前 -->
+    <filter>
+        <filter-name>BeforeFilter</filter-name>
+        <filter-class>com.servlet.learning.BeforeFilter</filter-class>
+    </filter>
+    <filter>
+        <filter-name>AfterFilter</filter-name>
+        <filter-class>com.servlet.learning.AfterFilter</filter-class>
+    </filter>
+
+    <!-- 过滤器的路径拦截规则 -->
+    <filter-mapping>
+        <filter-name>BeforeFilter</filter-name>
+        <url-pattern>*.do</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AfterFilter</filter-name>
+        <url-pattern>*.do</url-pattern>
+    </filter-mapping>
+
+    <!-- 配置 Servlet -->
+    <servlet>
+        <servlet-name>Controller</servlet-name>
+        <servlet-class>com.servlet.learning.HelloServlet</servlet-class>
+    </servlet>
+
+    <!-- Servlet 的拦截规则 -->
+    <servlet-mapping>
+        <servlet-name>Controller</servlet-name>
+        <url-pattern>*.do</url-pattern>
+    </servlet-mapping>
+
+</web-app>
